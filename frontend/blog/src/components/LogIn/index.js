@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { counterADD, counterSUBTRACT } from '../../Redux/actions'
-
+import { Button } from 'semantic-ui-react'
 
 function mapDispatchToProps(dispatch) {
     return({
@@ -19,19 +19,25 @@ function mapStateToProps(state) {
 
 const styles = {
   addbutton:{
-    backgroundColor: 'black',
-    color: 'white',
-    padding: '5%'
+    // backgroundColor: 'black',
+    // color: 'white',
+    padding: '5%',
+    margin: '1%',
+    border: 'none'
   },
   subtractbutton:{
-    backgroundColor: 'black',
-    color: 'white',
-    padding: '5%'
+    // backgroundColor: 'black',
+    // color: 'white',
+    padding: '5%',
+    margin: '1%',
+    border: 'none'
   },
   countertotal:{
     backgroundColor: 'purple',
     color: 'orange',
-    padding: '5%'
+    padding: '5%',
+    margin: '1%',
+    border: 'none'
   },
 }
 
@@ -70,16 +76,16 @@ class LogIn extends Component {
             {this.props.counternumber}
           </h1>
         </div>
-        <div style={styles.addbutton} onClick={()=>{this.addtocounterhandler()}}>
+        <Button primary onClick={()=>{this.addtocounterhandler()}}>
           <p>
             Add to Counter!
           </p>
-        </div>
-        <div style={styles.subtractbutton} onClick={()=>{this.subtractfromcounterhandler()}}>
+        </Button>
+        <Button primary onClick={()=>{this.subtractfromcounterhandler()}}>
           <p>
             Subtract from Counter!
           </p>
-        </div>
+        </Button>
       </div>
     );
   }
