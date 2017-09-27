@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { counterADD, counterSUBTRACT, loginUSER, logoutUSER, setTOKEN, signupUSER, sendPOST, userPOSTS } from '../../Redux/actions'
-import { Button, Input, Modal, Header, Form, TextArea } from 'semantic-ui-react'
+import { Button, Input, Modal, Header, Form, TextArea, List } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import renderIf from 'render-if';
 import styled from 'styled-components';
@@ -35,10 +35,19 @@ const Flex1 = styled.div`
 const InputHolder = styled.div`
   position: absolute;
   width: 100%;
-  top: 40%;
+  top: 50%;
   height: 40%;
 `
 
+const ListHolder = styled.div`
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 5%;
+  height: 40%;
+  overflow: hidden;
+  overflow-y: scroll;
+`
 
 class MakeAPost extends Component {
   constructor(props) {
@@ -67,8 +76,11 @@ class MakeAPost extends Component {
   componentWillReceiveProps(nextProps){
     console.log('inside componentWillReceiveProps and nextProps.userpostsreturn is ', nextProps.userpostsreturn);
     if(this.props.tokenreturn!=''){
+      console.log('inside if statement in componentWillReceiveProps');
       this.setState({
         userposts: nextProps.userpostsreturn
+      }, ()=>{
+        console.log('after setting userposts and value is: ', this.state.userposts);
       })
     }
   }
@@ -92,7 +104,7 @@ class MakeAPost extends Component {
     if(this.state.userposts.length!=0){
       ListUserPosts = this.state.userposts.map((post,i) => {
         return (
-          <ListPosts key={i} post={post}/>
+          <ListPosts key={i} post_body={post.post_body} post_title={post.post_title}/>
         );
       });
     }
@@ -107,6 +119,13 @@ class MakeAPost extends Component {
                 <div>
                   <Header size='huge'>You have not made any posts yet!</Header>
                 </div>
+              </div>
+            )}
+            {renderIf(this.state.userposts.length!=0)(
+              <div>
+                <ListHolder>
+                  {ListUserPosts}
+                </ListHolder>
               </div>
             )}
             <InputHolder>

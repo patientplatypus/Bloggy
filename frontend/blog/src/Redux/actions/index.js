@@ -181,6 +181,7 @@ export const CLEAROLDPOSTS = () => {
 
 export const AXIOSSUCCESS = (array, whereto) => {
   console.log('value of array in AXIOSSUCCESS', array);
+  console.log('value of whereto in AXIOSSUCCESS', whereto);
   return{
     type: whereto,
     data: array
