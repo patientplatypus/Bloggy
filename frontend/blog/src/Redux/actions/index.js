@@ -29,6 +29,8 @@ export const sendPOST = (payload) => {
       console.log('response from sendPOST', response);
       console.log('value of response.data', response.data);
       dispatch(AXIOSSUCCESS(response.data, 'SEND_POST'))
+      // dispatch(RERETRIEVEUSERPOSTS())
+      dispatch(userPOSTS(payload))
     })
     .catch((error)=>{
       console.log('error from sendPOST', error);

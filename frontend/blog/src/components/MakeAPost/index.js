@@ -65,6 +65,7 @@ class MakeAPost extends Component {
 
 
   componentWillReceiveProps(nextProps){
+    console.log('inside componentWillReceiveProps and nextProps.userpostsreturn is ', nextProps.userpostsreturn);
     if(this.props.tokenreturn!=''){
       this.setState({
         userposts: nextProps.userpostsreturn
